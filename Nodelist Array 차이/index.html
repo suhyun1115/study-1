@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nodelist Array 차이</title>
+  <link rel="stylesheet" href="../common/common.css">
+</head>
+<body>
+  <div>
+    <h2>Node List</h2>
+    <ul>
+      <li>NodeList는 DOM API를 사용하여 생성됩니다. 예를 들어, document.querySelectorAll() 또는 childNodes와 같은 메서드로 생성됩니다. NodeList는 DOM 노드 객체의 컬렉션입니다.</li>
+      <li>대부분의 NodeList는 유사 배열 객체이며 <span>forEach, entries, keys</span> 등 일부 배열 메서드를 지원하지만, 완전한 배열은 아닙니다.</li>
+      <li>querySelectorAll()로 반환된 NodeList는 정적입니다. 즉, 문서의 <span>DOM이 변경되어도 NodeList는 변경되지 않습니다.</span></li>
+      <li>NodeList를 배열처럼 사용하고 싶을 경우, Array.from() 메서드를 사용하거나 스프레드 연산자 [...]를 이용해 쉽게 변환할 수 있습니다.</li>
+    </ul>
+  </div>
+  <div>
+    <h2>Array</h2>
+    <ul>
+      <li>Array는 JavaScript에서 일반적인 배열 객체로, 원하는 어떤 데이터 타입의 요소도 포함할 수 있습니다. 일반적으로 [] 대괄호를 사용하여 생성하거나 Array 생성자를 사용하여 생성됩니다</li>
+      <li>JavaScript의 Array는 완전한 배열 객체로, 배열 메서드 (map, filter, reduce 등)를 모두 사용할 수 있습니다.</li>
+      <li><span>Node.childNodes와 같은 몇 가지 메서드나 프로퍼티는 **라이브(NodeListLive)**를 반환하며, 문서가 변경될 때 자동으로 업데이트됩니다.</span></li>
+    </ul>
+  </div>
+</body>
+</html>

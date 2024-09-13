@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MutationObserver</title>
+</head>
+<body>
+  <h1>MutationObserver</h1>
+  <ul>
+    <li>DOM 트리의 변경을 감지</li>
+    <li>MutationObserver(): DOM 변경 감지시 콜백 호출</li>
+    <li>
+      <ul>
+        <li>disconnect() : observe() 를 호출하기 전까지 더이상 MutaionObserver 인스턴스가 더이상의 알림을 수신하지 않도록 설정</li>
+        <li>observe() : MutationObserver 인스턴스가 자신의 콜백으로 알림을 수신하도록 설정 </li>
+        <li>takeRecords() : MutationObserver의 알림 큐를 비우고, 큐에서 대기 중이던 알림들은 MutationRecord들로 구성된 새로운 Array로 반환합니다.</li>
+      </ul>
+    </li>
+  </ul>
+  
+  <section>
+    <h2>예제</h2>
+    <div class="parent">
+      <button class="button-1">add child</button>
+      <button class="button-2">add attr</button>
+    </div>
+  </section>
+</body>
+<script>
+  const parent = document.querySelector('.parent');
+  const btn1 = document.querySelector('.button-1');
+  const btn2 = document.querySelector('.button-2');
+  
+  btn1.addEventListener('click', () => {
+    const div = document.createElement('div');
+    div.innerText = 'new child';
+    parent.append(div);
+  })
+  
+  btn2.addEventListener('click', () => {
+    const randomNum = Math.round(Math.random()*100);
+    
+    parent.setAttribute('data-temp-' + randomNum, 'temp value' + randomNum)
+  })
+  
+  const observer = new MutationObserver((els, obeserver) => {
+    for (const el of els) {
+      console.log(el);
+    }
+  });
+  
+  observer.observe(parent, {childList: true, attributes: true});
+</script>
+</html>

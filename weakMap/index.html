@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    (() => {
+      const weakmap = new WeakMap();
+      const obj = {
+        name: 'suhyun',
+        age: 34,
+      }
+      const obj2 = {
+        name: 'jieun',
+        age: 30,
+      }
+      
+      const obj3 = {
+        name: 'gyungok',
+        age: 58,
+      }
+      
+      weakmap.set(obj, 1);
+      weakmap.set(obj2, '지은');
+      weakmap.set(obj3, 3);
+      console.log('weakmap', weakmap);
+      console.log('weakmap.has(obj)', weakmap.has(obj));
+      console.log('weakmap.has(obj2)', weakmap.has(obj2));
+      console.log('weakmap.has(obj3)', weakmap.has(obj3));
+      console.log('weakmap.get(obj)', weakmap.get(obj));
+      console.log('weakmap.delete(obj2)', weakmap.delete(obj2));
+      console.log('weakmap.get(obj2)', weakmap.get(obj2));
+      console.log('weakmap.has(obj2)', weakmap.has(obj2));
+    })()
+  </script>
+</body>
+</html>

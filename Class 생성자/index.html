@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Class 생성자</title>
+</head>
+<body>
+  <style>
+    .accordion-title {
+      padding-block: 20px;
+      width: 100%;
+    }
+    .accordion-content-wrap {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height .3s;
+    }
+    .accordion-content {
+      display: block;
+      padding-block: 40px;
+      background-color: #dedede;
+    }
+  </style>
+  <section class="accordion">
+    <div class="accordion-list">
+      <div class="accordion-item">
+        <button class="accordion-title">Lorem, ipsum dolor.</button>
+        <div class="accordion-content-wrap" data-expanded>
+          <div class="accordion-content">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias tenetur exercitationem natus nulla. Ea quam natus vel consequuntur nulla ducimus.
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <button class="accordion-title">Lorem, ipsum dolor.</button>
+        <div class="accordion-content-wrap">
+          
+          <div class="accordion-content">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias tenetur exercitationem natus nulla. Ea quam natus vel consequuntur nulla ducimus.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias tenetur exercitationem natus nulla. Ea quam natus vel consequuntur nulla ducimus.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias tenetur exercitationem natus nulla. Ea quam natus vel consequuntur nulla ducimus.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias tenetur exercitationem natus nulla. Ea quam natus vel consequuntur nulla ducimus.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias tenetur exercitationem natus nulla. Ea quam natus vel consequuntur nulla ducimus.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias tenetur exercitationem natus nulla. Ea quam natus vel consequuntur nulla ducimus.
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <button class="accordion-title">Lorem, ipsum dolor.</button>
+        <div class="accordion-content-wrap">
+          
+          <div class="accordion-content">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias tenetur exercitationem natus nulla. Ea quam natus vel consequuntur nulla ducimus.
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <button class="accordion-title">Lorem, ipsum dolor.</button>
+        <div class="accordion-content-wrap">
+          
+          <div class="accordion-content">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias tenetur exercitationem natus nulla. Ea quam natus vel consequuntur nulla ducimus.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias tenetur exercitationem natus nulla. Ea quam natus vel consequuntur nulla ducimus.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias tenetur exercitationem natus nulla. Ea quam natus vel consequuntur nulla ducimus.
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <button class="accordion-title">Lorem, ipsum dolor.</button>
+        <div class="accordion-content-wrap">
+          
+          <div class="accordion-content">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias tenetur exercitationem natus nulla. Ea quam natus vel consequuntur nulla ducimus.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias tenetur exercitationem natus nulla. Ea quam natus vel consequuntur nulla ducimus.
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <button class="accordion-title">Lorem, ipsum dolor.</button>
+        <div class="accordion-content-wrap">
+          
+          <div class="accordion-content">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias tenetur exercitationem natus nulla. Ea quam natus vel consequuntur nulla ducimus.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias tenetur exercitationem natus nulla. Ea quam natus vel consequuntur nulla ducimus.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias tenetur exercitationem natus nulla. Ea quam natus vel consequuntur nulla ducimus.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias tenetur exercitationem natus nulla. Ea quam natus vel consequuntur nulla ducimus.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias tenetur exercitationem natus nulla. Ea quam natus vel consequuntur nulla ducimus.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias tenetur exercitationem natus nulla. Ea quam natus vel consequuntur nulla ducimus.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <script>
+    (() => {
+      class Accordion {
+        constructor(el) {
+          this.els = {
+            el: document.querySelector(el),
+          }
+          
+          this.init();
+        }
+        
+        init() {
+          this.setElements();
+          this.initAccordionItem();
+        }
+        
+        setElements() {
+          this.els.items = this.els.el.querySelectorAll('.accordion-item');
+          this.els.expandButtons = this.els.el.querySelectorAll('.accordion-title');
+        }
+        
+        initAccordionItem() {
+          this.els.items.forEach(el => {
+            new AccordionItem(el);
+          });
+        }
+        
+        bindEvents() {
+          this.els.expandButtons.forEach(btn, () => {
+            const isExpanded = btn.nextElementSibling.dataset.expanded ? true : false;
+            
+            btn.addEventListener('click', () => {
+              if (isExpanded) {
+                
+              }
+            });
+          })
+        }
+      }
+      
+      class AccordionItem {
+        constructor(item) {
+          this.els = {
+            el: item,
+          }
+          
+          // this.handler = {
+          //   clickButton: this.clickButton.bind(this),
+          // }
+          
+          this.isExpanded;
+          
+          this.init()
+        }
+        
+        init() {
+          this.setElements();
+          this.setProperty();
+          this.setContentHeight();
+          // this.bindEvents();
+        }
+        
+        setElements() {
+          this.els.button = this.els.el.querySelector('.accordion-title');
+          this.els.contentWrap = this.els.el.querySelector('.accordion-content-wrap');
+          this.els.content = this.els.contentWrap.querySelector('.accordion-content');
+        }
+        
+        setProperty() {
+          this.isExpanded = this.els.contentWrap.dataset.isExpanded === 'true' ? true : false;
+        }
+        
+        setContentHeight() {
+          let height = 0;
+          if (this.isExpanded) {
+            height = this.els.content.getBoundingClientRect().height;
+          }
+          this.els.contentWrap.style.maxHeight = height + 'px';
+        }
+        
+        // bindEvents() {
+        //   this.els.button.addEventListener('click', this.handler.clickButton);
+        // }
+        
+        
+        // clickButton() {
+        //   this.els.contentWrap.dataset.isExpanded = !this.isExpanded;
+        //   this.isExpanded = !this.isExpanded;
+        //   this.setContentHeight();
+        // }
+      }
+      
+      Accordion.instances = new WeakMap;
+
+      const accordion = new Accordion('.accordion');
+    })()
+  </script>
+</body>
+</html>
